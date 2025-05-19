@@ -1,1 +1,1 @@
-<img src="/public/bio-dasboard-pic.png">
+![Bio Dashboard Screenshot](/public/bio-dasboard-pic.png)
