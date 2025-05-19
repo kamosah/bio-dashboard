@@ -9,7 +9,7 @@ export async function GET(
   // Simulate API delay
   await new Promise(resolve => setTimeout(resolve, 700));
   
-  const id = params.id;
+  const { id } = await params;
   
   if (mockExperimentDetails[id]) {
     return NextResponse.json(mockExperimentDetails[id]);

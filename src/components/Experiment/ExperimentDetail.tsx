@@ -1,10 +1,10 @@
 // src/components/Experiment/ExperimentDetail.tsx
 "use client";
 
-import { useState } from "react";
 import VisualizationPanel from "./VisualizationPanel";
 import MetadataPanel from "./MetadataPanel";
 import { ExperimentDetail as ExperimentDetailType } from "@/lib/types";
+import { notFound } from "next/navigation";
 
 // BUG: This component has rendering issues
 export default function ExperimentDetail({
@@ -14,6 +14,10 @@ export default function ExperimentDetail({
 }) {
   // Bug: No proper handling of null experiment data
   // This will cause issues if experiment is null
+
+  if (!experiment) {
+    return notFound();
+  }
 
   if (!experiment) {
     return (

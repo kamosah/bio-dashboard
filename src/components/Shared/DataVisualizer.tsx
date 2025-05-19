@@ -39,6 +39,13 @@ export default function DataVisualizer({
     }, 5000);
 
     // No cleanup function to clear the interval
+    return () => {
+      // This cleanup function is never called, leading to a memory leak
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
   }, [data, title]);
 
   if (!chartData) {

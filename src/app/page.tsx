@@ -1,11 +1,23 @@
 // src/app/page.tsx - Dashboard page
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import ExperimentList from "@/components/Dashboard/ExperimentList";
 import { getExperiments } from "@/lib/apiClient";
 
-export default async function DashboardPage() {
+export default function DashboardPage() {
   // In App Router, this becomes a Server Component by default
-  const experiments = await getExperiments();
+  const [experiments, setExperiments] = useState([]);
+
+  useEffect(() => {
+    async function fetchExperiments() {
+      try {
+        const response = await getExperiments();
+        setExperiments(response);
+      } catch (error) {
+        console.error("Error fetching experiments:", error);
+      }
+    }
+    fetchExperiments();
+  }, []);
 
   return (
     <div className="dashboard-container p-6">

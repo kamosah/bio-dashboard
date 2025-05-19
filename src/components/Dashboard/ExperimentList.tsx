@@ -21,10 +21,11 @@ export default function ExperimentList({
     // This doesn't handle case-insensitive search
     const filtered = experiments.filter(
       (exp) =>
-        exp.title.includes(searchTerm) || exp.proteinName.includes(searchTerm)
+        exp.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        exp.proteinName.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredExperiments(filtered);
-  }, [searchTerm]); // Bug: Missing dependency on experiments
+  }, [searchTerm, experiments]); // Bug: Missing dependency on experiments
 
   const handleSearch = (term: string) => {
     setSearchTerm(term);

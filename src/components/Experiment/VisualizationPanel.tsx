@@ -50,7 +50,7 @@ export default function VisualizationPanel({ data }: { data: ExperimentData }) {
 
   const options = {
     // Bug: No responsive option
-    maintainAspectRatio: true, // This causes issues on small screens
+    maintainAspectRatio: false, // This causes issues on small screens
     scales: {
       y: {
         beginAtZero: false,
